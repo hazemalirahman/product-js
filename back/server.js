@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const sqlite3 = require('sqlite3').verbose();
 const seedDb = require('./seed');
 
@@ -6,6 +7,7 @@ const port = 3000;
 const app = express();
 app.use(express.static('public'));
 app.use(express.json());
+app.use(cors())
 
 const db = new sqlite3.Database('./database.db');
 seedDb(db);
