@@ -1,13 +1,15 @@
 window.onload= async function productDetails(){
-    let res = await fetch("http://localhost:3000/products/1");
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const id = urlParams.get("id");
+
+    let res = await fetch("http://localhost:3000/products/" + id);
+    // let res = await fetch(`http://localhost:3000/products/${id}`);
 
     if (!res.ok) {alert("error calling api")}
 
     let resJson = await res.json();
-    console.log("------------------------------");
-    console.log(resJson);
-    console.log("------------------------------");
-
+    
     let nameDiv=document.getElementById("name");
     nameDiv.innerHTML = resJson["name"];
     
